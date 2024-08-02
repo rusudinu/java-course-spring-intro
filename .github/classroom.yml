@@ -1,0 +1,71 @@
+name: Autograding Tests
+'on':
+  - push
+  - repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Setup java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: CartControllerTests
+        id: cart-controller-tests
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: CartControllerTests Test
+          setup-command: ''
+          command: mvn test -Dtest=CartControllerTests
+          timeout: 10
+          max-score: 25
+
+      - name: OrderControllerTests
+        id: order-controller-tests
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: OrderControllerTests Test
+          setup-command: ''
+          command: mvn test -Dtest=OrderControllerTests
+          timeout: 10
+          max-score: 25
+
+      - name: UserControllerTests
+        id: user-controller-tests
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: UserControllerTests Test
+          setup-command: ''
+          command: mvn test -Dtest=UserControllerTests
+          timeout: 10
+          max-score: 25
+
+      - name: WishlistControllerTests
+        id: wishlist-controller-tests
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: WishlistControllerTests Test
+          setup-command: ''
+          command: mvn test -Dtest=WishlistControllerTests
+          timeout: 10
+          max-score: 25
+
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          CART-CONTROLLER-TESTS-RESULTS: "${{ steps.cart-controller-tests.outputs.result }}"
+          ORDER-CONTROLLER-TESTS-RESULTS: "${{ steps.order-controller-tests.outputs.result }}"
+          USER-CONTROLLER-TESTS-RESULTS: "${{ steps.user-controller-tests.outputs.result }}"
+          WISHLIST-CONTROLLER-TESTS-RESULTS: "${{ steps.wishlist-controller-tests.outputs.result }}"
+        with:
+          runners: cart-controller-tests,order-controller-tests,user-controller-tests,wishlist-controller-tests
+
