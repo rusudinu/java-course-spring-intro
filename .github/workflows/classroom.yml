@@ -62,10 +62,10 @@ jobs:
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          CART-CONTROLLER-TESTS-RESULTS: "${{ steps.cart-controller-tests.outputs.result }}"
-          ORDER-CONTROLLER-TESTS-RESULTS: "${{ steps.order-controller-tests.outputs.result }}"
-          USER-CONTROLLER-TESTS-RESULTS: "${{ steps.user-controller-tests.outputs.result }}"
-          WISHLIST-CONTROLLER-TESTS-RESULTS: "${{ steps.wishlist-controller-tests.outputs.result }}"
+          CART-CONTROLLER-TESTS-RESULTS: "${{steps.cart-controller-tests.outputs.result}}"
+          ORDER-CONTROLLER-TESTS-RESULTS: "${{steps.order-controller-tests.outputs.result}}"
+          USER-CONTROLLER-TESTS-RESULTS: "${{steps.user-controller-tests.outputs.result}}"
+          WISHLIST-CONTROLLER-TESTS-RESULTS: "${{steps.wishlist-controller-tests.outputs.result}}"
         with:
           runners: cart-controller-tests,order-controller-tests,user-controller-tests,wishlist-controller-tests
 
