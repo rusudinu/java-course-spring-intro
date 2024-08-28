@@ -23,7 +23,7 @@ jobs:
         id: cart-controller-tests
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: CartControllerTests Test
+          test-name: CartControllerTests
           setup-command: ''
           command: mvn test -Dtest=CartControllerTests
           timeout: 10
@@ -33,7 +33,7 @@ jobs:
         id: order-controller-tests
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: OrderControllerTests Test
+          test-name: OrderControllerTests
           setup-command: ''
           command: mvn test -Dtest=OrderControllerTests
           timeout: 10
@@ -43,7 +43,7 @@ jobs:
         id: user-controller-tests
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: UserControllerTests Test
+          test-name: UserControllerTests
           setup-command: ''
           command: mvn test -Dtest=UserControllerTests
           timeout: 10
@@ -53,7 +53,7 @@ jobs:
         id: wishlist-controller-tests
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: WishlistControllerTests Test
+          test-name: WishlistControllerTests
           setup-command: ''
           command: mvn test -Dtest=WishlistControllerTests
           timeout: 10
@@ -62,10 +62,10 @@ jobs:
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          CART-CONTROLLER-TESTS-RESULTS: "${{steps.cart-controller-tests.outputs.result}}"
-          ORDER-CONTROLLER-TESTS-RESULTS: "${{steps.order-controller-tests.outputs.result}}"
-          USER-CONTROLLER-TESTS-RESULTS: "${{steps.user-controller-tests.outputs.result}}"
-          WISHLIST-CONTROLLER-TESTS-RESULTS: "${{steps.wishlist-controller-tests.outputs.result}}"
+          CART_CONTROLLER_TESTS_RESULTS: "${{steps.cart-controller-tests.outputs.result}}"
+          ORDER_CONTROLLER_TESTS_RESULTS: "${{steps.order-controller-tests.outputs.result}}"
+          USER_CONTROLLER_TESTS_RESULTS: "${{steps.user-controller-tests.outputs.result}}"
+          WISHLIST_CONTROLLER_TESTS_RESULTS: "${{steps.wishlist-controller-tests.outputs.result}}"
         with:
           runners: cart-controller-tests,order-controller-tests,user-controller-tests,wishlist-controller-tests
 
